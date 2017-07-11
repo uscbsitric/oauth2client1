@@ -60,7 +60,7 @@ Route::get('/test',
 
 	         $response = $http->request('GET',
 	         		                        'http://oauth2server1/api/user/1',
-	         		                         ['headers' => ['Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMwODQzYzJmYjk0Mjk1MzlkNmQ0MjgzZmY5MDFlYzU1MmVmYTJjYTE0NjFhYmJjZjJjZjEwYzAwZTY3NTQxNzFhNGQ1OTEyYjVmYWQ4NmU4In0.eyJhdWQiOiIxIiwianRpIjoiMzA4NDNjMmZiOTQyOTUzOWQ2ZDQyODNmZjkwMWVjNTUyZWZhMmNhMTQ2MWFiYmNmMmNmMTBjMDBlNjc1NDE3MWE0ZDU5MTJiNWZhZDg2ZTgiLCJpYXQiOjE0OTk3ODkxMjYsIm5iZiI6MTQ5OTc4OTEyNiwiZXhwIjoxNTMxMzI1MTI2LCJzdWIiOiIiLCJzY29wZXMiOltdfQ.O7jKOdDttvH-Tigl9TnolrA-XGuJUnNaMrtxM0QXNvVa37myw4595kIzhWRAUKcIBBHCUmg6gTpz2mVBz42zfp_cZGEUVekstkBNqAsUjDbYaF_tk4thiinXTyVbsazadr6S-QWDTyJa4LABVgEYP-UkWwM6TJ-aJk1mOwRT9eVUKycqSNmDq0UwQchhz8iGqDH9Cpv5iefWqVp46mJilbQ-pQgzZ9MaeMa4pNPWB0vC7EgY2wONtZeaA0sNPohYV8CRpN9X0sh4jyDAjEz_WuBSRlBWd2aJT6iGWieT-w0EwRTOZ_--L5Bku0npFDJrY3JWYy6XktJKSXW80Pkyc37i8zD9kWuyxlyleE83VSPOutUDzKQ48iBqhsMCir7gA4vObnjX4_gduTMebSJl8zgEWhdgsKg0Mj9j4_277IHwvuvBy7lHkokhvfJwNqspRYbHKYm1pBFbUc6GVmoYM2vRpzPoaEHvu-H_4koJu2SCqMxkOT7tguIQ1kw32cyZ48qpvJ9xsQs-7YmkciNcqmVaciyZZGeTPmCQFNPzEeY24jrGGt7MNPnsfRzB-COjarDB_B98LtS9NPE1HaHstFM7FKfYZUlUxHpzw8SOPX2dBGwBE_WWeI_2lLc3Y71JvXpQV8NeEB2HnxLliMb9FmocifYL2G4Atx6rKcfuduk'
+	         		                         ['headers' => ['Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMxNDFlNzkyZmNkMjYyNjUwZTQ5MWNhZTE3MzUxMmZmMjg4Y2NjNTY5ZTRiYmFhMmJhZDFiZWFkNmQ1YjFjYmVkZmQwMTYwZWNhZDliNjkwIn0.eyJhdWQiOiIzIiwianRpIjoiMzE0MWU3OTJmY2QyNjI2NTBlNDkxY2FlMTczNTEyZmYyODhjY2M1NjllNGJiYWEyYmFkMWJlYWQ2ZDViMWNiZWRmZDAxNjBlY2FkOWI2OTAiLCJpYXQiOjE0OTk3ODc1NzYsIm5iZiI6MTQ5OTc4NzU3NiwiZXhwIjoxNTMxMzIzNTc2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.r637rV5SPo-f4RCxAAk4wAg88cxGHgiVZng6y35afoHMwYc6rp3d4CEgUwnAc3GM8uaNeG5RediDQ-9QigQFeUDaakPXjbbKhuyfryU3SQhw1MohH09HSg_yUKOxGTwBnlJrcY3sAFHL1MOfAmtaFGMomzHH-BV6Kfd0pe3fwb3eFfGfpcI15bcQzNDXvn3bvdZMvt8d4ByYAaqdD4G13qWAiQPcBTs9RDeE3I-SCWFJtfd6h1Ii3CrmO2n6op7O5GD7fz-mAiIwTcmlj-qgbqVCwIbVV4Ev0Bixj0OlQnOpjWMOtqAJDs_ZPB71qIlxmiI03prtwAYwKiaqxEmBEs18DdvpHjWwu7vxwZEuNuMFHXCX67KhaC1li_7Stz0UNQMSUx85tNBOL_Czc1a6M8T-iMni8VeQY11T3n1GVnwGbAWy0vKzUvvLtlV7wmNN39EJ0lAWntLXq2YPARiFjqjgmqM06klekQXIoa7-1du3WBbBB_AZOnimGahYjQBrPa-dQFs4ZRQkxZ81NUlGjkJETnfBA1eXrlvmhe6OpQq0I2H1v0AbZwdqpgcBA73NJ89Me92GoosqwGbPAsbuur53Z-pEAyTOZGfW2EAe9OxhlydX-CTN0wqnwhRN8oC2OQkW9bXT6lyzgH8KOSJx6wat0uaXSp109xKj7CyPVSk'
 	         		                                       ]
 	         		                         ]
 	         		                       );
@@ -223,14 +223,41 @@ Route::get('/clientCredentialsGrantTest',
 
              $response = $guzzle->post('http://oauth2server1/oauth/token',
                                        ['form_params' => ['grant_type' => 'client_credentials',
-                                                          'client_id' => '1',
-                                                          'client_secret' => 'xmKDdJnyi139Hc1D3SIlae1bHJxzE5xkCTiJUQ70',
+                                                          'client_id' => '6',
+                                                          'client_secret' => 'aPtS2UTILPrSPTvtXZxsF8VEMj9fDlQabRNNFzGR',
                                                           'scope' => '',
                                                          ],
                                        ]
                                       );
 
             return json_decode((string) $response->getBody(), true);
+           }
+          );
+
+Route::get('/clientCredentialsGrantMachineTest',
+           function()
+           {
+             /*****
+             $guzzle = new GuzzleHttp\Client;
+             $headers = ['Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMxNDFlNzkyZmNkMjYyNjUwZTQ5MWNhZTE3MzUxMmZmMjg4Y2NjNTY5ZTRiYmFhMmJhZDFiZWFkNmQ1YjFjYmVkZmQwMTYwZWNhZDliNjkwIn0.eyJhdWQiOiIzIiwianRpIjoiMzE0MWU3OTJmY2QyNjI2NTBlNDkxY2FlMTczNTEyZmYyODhjY2M1NjllNGJiYWEyYmFkMWJlYWQ2ZDViMWNiZWRmZDAxNjBlY2FkOWI2OTAiLCJpYXQiOjE0OTk3ODc1NzYsIm5iZiI6MTQ5OTc4NzU3NiwiZXhwIjoxNTMxMzIzNTc2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.r637rV5SPo-f4RCxAAk4wAg88cxGHgiVZng6y35afoHMwYc6rp3d4CEgUwnAc3GM8uaNeG5RediDQ-9QigQFeUDaakPXjbbKhuyfryU3SQhw1MohH09HSg_yUKOxGTwBnlJrcY3sAFHL1MOfAmtaFGMomzHH-BV6Kfd0pe3fwb3eFfGfpcI15bcQzNDXvn3bvdZMvt8d4ByYAaqdD4G13qWAiQPcBTs9RDeE3I-SCWFJtfd6h1Ii3CrmO2n6op7O5GD7fz-mAiIwTcmlj-qgbqVCwIbVV4Ev0Bixj0OlQnOpjWMOtqAJDs_ZPB71qIlxmiI03prtwAYwKiaqxEmBEs18DdvpHjWwu7vxwZEuNuMFHXCX67KhaC1li_7Stz0UNQMSUx85tNBOL_Czc1a6M8T-iMni8VeQY11T3n1GVnwGbAWy0vKzUvvLtlV7wmNN39EJ0lAWntLXq2YPARiFjqjgmqM06klekQXIoa7-1du3WBbBB_AZOnimGahYjQBrPa-dQFs4ZRQkxZ81NUlGjkJETnfBA1eXrlvmhe6OpQq0I2H1v0AbZwdqpgcBA73NJ89Me92GoosqwGbPAsbuur53Z-pEAyTOZGfW2EAe9OxhlydX-CTN0wqnwhRN8oC2OQkW9bXT6lyzgH8KOSJx6wat0uaXSp109xKj7CyPVSk'];
+
+             $response = $guzzle->request("GET",
+                                          "http://oauth2server1/api/user/1",
+                                          $headers
+                                         );
+
+             return json_decode((string) $response->getBody(), true);
+             *****/
+
+             $header = ['Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMxNDFlNzkyZmNkMjYyNjUwZTQ5MWNhZTE3MzUxMmZmMjg4Y2NjNTY5ZTRiYmFhMmJhZDFiZWFkNmQ1YjFjYmVkZmQwMTYwZWNhZDliNjkwIn0.eyJhdWQiOiIzIiwianRpIjoiMzE0MWU3OTJmY2QyNjI2NTBlNDkxY2FlMTczNTEyZmYyODhjY2M1NjllNGJiYWEyYmFkMWJlYWQ2ZDViMWNiZWRmZDAxNjBlY2FkOWI2OTAiLCJpYXQiOjE0OTk3ODc1NzYsIm5iZiI6MTQ5OTc4NzU3NiwiZXhwIjoxNTMxMzIzNTc2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.r637rV5SPo-f4RCxAAk4wAg88cxGHgiVZng6y35afoHMwYc6rp3d4CEgUwnAc3GM8uaNeG5RediDQ-9QigQFeUDaakPXjbbKhuyfryU3SQhw1MohH09HSg_yUKOxGTwBnlJrcY3sAFHL1MOfAmtaFGMomzHH-BV6Kfd0pe3fwb3eFfGfpcI15bcQzNDXvn3bvdZMvt8d4ByYAaqdD4G13qWAiQPcBTs9RDeE3I-SCWFJtfd6h1Ii3CrmO2n6op7O5GD7fz-mAiIwTcmlj-qgbqVCwIbVV4Ev0Bixj0OlQnOpjWMOtqAJDs_ZPB71qIlxmiI03prtwAYwKiaqxEmBEs18DdvpHjWwu7vxwZEuNuMFHXCX67KhaC1li_7Stz0UNQMSUx85tNBOL_Czc1a6M8T-iMni8VeQY11T3n1GVnwGbAWy0vKzUvvLtlV7wmNN39EJ0lAWntLXq2YPARiFjqjgmqM06klekQXIoa7-1du3WBbBB_AZOnimGahYjQBrPa-dQFs4ZRQkxZ81NUlGjkJETnfBA1eXrlvmhe6OpQq0I2H1v0AbZwdqpgcBA73NJ89Me92GoosqwGbPAsbuur53Z-pEAyTOZGfW2EAe9OxhlydX-CTN0wqnwhRN8oC2OQkW9bXT6lyzgH8KOSJx6wat0uaXSp109xKj7CyPVSk'];
+
+             $ch = curl_init ();
+             curl_setopt ($ch, CURLOPT_URL, 'http://oauth2server1/api/user/1');
+             curl_setopt ($ch, CURLOPT_HTTPHEADER, $header);
+             $result = curl_exec ($ch);
+             curl_close($ch);
+
+             return json_decode( (string)$result, true );
            }
           );
 
