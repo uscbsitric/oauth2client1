@@ -23,14 +23,16 @@ Route::get('/', function () {
 Route::get('/redirect',
 		   function()
 		   {
-		   	$query = http_build_query(['client_id'     => '6',
+		   	$query = http_build_query(['client_id'     => '3',
             		   							   'redirect_uri'  => 'http://authorizationgrantclient1/callback',
             		   							   'response_type' => 'code',
-            		   							   'scope'         => ''
+            		   							   'scope' => 'check-status place-orders',
             		   							  ]
             		   							 );
 
-		   	return redirect('http://oauth2server1/oauth/authorize?' . $query);
+        $redirectTo = 'http://oauth2server1/oauth/authorize?' . $query;
+
+		   	return redirect( $redirectTo );
        }
 		  );
 
@@ -40,8 +42,8 @@ Route::get('/callback',
 		   	$http = new \GuzzleHttp\Client;
 
 		   	$response = $http->post('http://oauth2server1/oauth/token',
-		   			                    ['form_params' => ['client_id' => '6',
-                  		   											     'client_secret' => 'aPtS2UTILPrSPTvtXZxsF8VEMj9fDlQabRNNFzGR',
+		   			                    ['form_params' => ['client_id' => '3',
+                  		   											     'client_secret' => 'ogZbdI6qLQfuN80BiH1XEVQSzRuOHpwkYoKUqUKc',
                   		   											     'grant_type' => 'authorization_code',
                   		   											     'redirect_uri' => 'http://authorizationgrantclient1/callback',
                   		   											     'code' => $request->code,
@@ -60,7 +62,7 @@ Route::get('/test',
 
 	         $response = $http->request('GET',
 	         		                        'http://oauth2server1/api/user/1',
-	         		                         ['headers' => ['Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImU1ODNiZTM2NDAyNWZhOTJlMzY3M2VlM2E4YWIxZWZjZDk5ODI5MTliZDJhOTQ4ZGQzYmI0ZTdlZjVhMTY4ODBlNzQwOGEwZmI1ZmZhMDk3In0.eyJhdWQiOiI2IiwianRpIjoiZTU4M2JlMzY0MDI1ZmE5MmUzNjczZWUzYThhYjFlZmNkOTk4MjkxOWJkMmE5NDhkZDNiYjRlN2VmNWExNjg4MGU3NDA4YTBmYjVmZmEwOTciLCJpYXQiOjE0OTk4NTExODEsIm5iZiI6MTQ5OTg1MTE4MSwiZXhwIjoxNTMxMzg3MTgxLCJzdWIiOiIiLCJzY29wZXMiOltdfQ.OVxZWnIB85UjSkt2uEVGDJ0eUN9CjwBkbPLwuNzP4yLOsLmJoT3cGHPK7ZZh3isXhZK49Fi1xOCnrsjg_XBNNS2USk7z9JGmIUFIem_8biXqL4YARy2RVZAZEDuS1c1liTDAcBX8bG1p3Tc-nT8xCAt3trnNl7u0aGq3iIqOz-YU_--3_So3uJz4NowddEDYmS5luEvp79ck1wO39QAXrCXshuTwQjCy9SRxwO7AZuKaq56bTYKgPTvAFssp96tXXzRl1piVmtHhWmC90LcuAbsAEg6Xpna7uAGKqnhRvLB2PbOr0YUab4FqToPuOrqflmAtdmdpEiYN031saCTsIuKZvlCEU1sWhddcuFbzX16fumP_I6nd2lF_SKK4h3ReN8Y58O_qV2jmoQ7IIPuXghd6LZcmH2rZLOGPjFEB9kdZeNe7L5Ov53ZhecLDFg3v9OKTk4N5p3cSf0_bkp0ksaLGhg0FGygB_w_KPmP3Xa9JxwtrOAZgVOw0kZC--rD60AJBcVK05eCg81l12dSZejlzSoaZ5pe8ZeEjoDBfMW5EIgQjYCKY9WpLLedGPNaWoR3rPXjhOqfd36NV3p9yHuRK5iV7_Co6zUiDSTQRtnH7m0JgUxb2ZK31ofQxiceRVfx4GfNp53-VBSZAQa3vWcnI92FMemj6WucQo55STME'
+	         		                         ['headers' => ['Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjExM2Y5ZTEwZmE2N2Q0MTI3YjY5ZTViMjkyODRhMjFiMWQ5ZmQ1MGMzNzQ4MjcxYjllZjI0MDJjYzYwNWU5ZTQ5YjExMTEwYjJiZGU0OWRhIn0.eyJhdWQiOiIzIiwianRpIjoiMTEzZjllMTBmYTY3ZDQxMjdiNjllNWIyOTI4NGEyMWIxZDlmZDUwYzM3NDgyNzFiOWVmMjQwMmNjNjA1ZTllNDliMTExMTBiMmJkZTQ5ZGEiLCJpYXQiOjE1MDAyNjI1ODUsIm5iZiI6MTUwMDI2MjU4NSwiZXhwIjoxNTMxNzk4NTg1LCJzdWIiOiIxIiwic2NvcGVzIjpbImNoZWNrLXN0YXR1cyIsInBsYWNlLW9yZGVycyJdfQ.AgbT7QyF70eD_1ZI1HM3m8SkQngZRrdaq9ruicGHBrVWRJKqWBQDbhrIqgMbZO4L2G4v8Cv0aEZzqkn54Aww530b4Ln8cwzDew4y4H7aL60cL0Bj2QKRs-biIAwyVSkPIVXLbxOX2C6bkN4UxImzXgfi9HpADmU43tDcdz2LnxBBirfZITYmYsaFSIwQ6s1HyJXGexnbNz9A7JoQIF-loNV-QLW9BE963jCgGK7W3hFspKW1ZXavoUk5uAryDJzEdv8MWqsRBtbxViodtGBZzxpwV9gv8viVReOFINtPED_eMgbJ1FQjVkGyLqs9hF1t1vcVI6CmHw1sbNYvUy6xFuGn3HDokNnBCUrOVa38qttdqRX2Hb9O6dPqCTd-dGMNII8tKilmXFMT1SD19bvdtcJtB2IU_2gO8URfkazOOAkzX_Q3FslIMTgl1GTbLJLDO1z1FXxJ3FD7VmHgbYGFhQ24AwLHOEulhtW6m_d1oXnwwdmQJXpbNi1RsZ84dtcCW8eY2iebLtTHFeBF4S8sJn23EISkRmdIJALoVoG-iPAICP9hlAJ_aRH8hTxl4Y3lFrWnrRo001FMNOqXf5QVc6aO9ipNHec80WdC478aryFzG1OZlARmDl7ryCBDDDmgxwLCzmF0JaXh7Il7VeMgvq9lHKPzxOk7Pf2mq3AgPXg'
 	         		                                       ]
 	         		                         ]
 	         		                       );
@@ -173,8 +175,8 @@ Route::get('/passwordTokenGrantTest',
 
     		   	 $response = $http->post('http://oauth2server1/oauth/token',
         		   	 		                 ['form_params' => ['grant_type' => 'password',
-                        									   					  'client_id' => '3',
-                        									   					  'client_secret' => 'WYveOsogWzD3t4RehAPctuL1EWL4uZzpiM51XAN9',
+                        									   					  'client_id' => '2',
+                        									   					  'client_secret' => 'UJrd2yWnIAOGHqWeUiLJPDuBLSgXBHMWmQPwxToI',
                         									   					  'username' => 'user1@somewhere.com',
                         									   					  'password' => 'user1',
                         									   					  'scope' => '',
@@ -193,15 +195,15 @@ Route::get('/passwordTokenGrantTest',
 Route::get('/implicitGrantRedirect',
            function()
            {
-             $query = http_build_query(['client_id' => '5',
+             $query = http_build_query(['client_id' => '3',
                                         'redirect_uri' => 'http://authorizationgrantclient1/implicitGrantRedirectCallback',
                                         'response_type' => 'token',
-                                        'scope' => '',
+                                        'scope' => 'check-status place-orders',
                                        ]
                                       );
 
              $redirectTo = 'http://oauth2server1/oauth/authorize?'.$query;
-             dd($redirectTo);
+
              return redirect($redirectTo);
            }
           );
@@ -223,9 +225,9 @@ Route::get('/clientCredentialsGrantTest',
 
              $response = $guzzle->post('http://oauth2server1/oauth/token',
                                        ['form_params' => ['grant_type' => 'client_credentials',
-                                                          'client_id' => '7',
-                                                          'client_secret' => 'dxF7GZebPEPE3vl47UApuDwXOziZlo5xl6Jx5fe9',
-                                                          'scope' => '',
+                                                          'client_id' => '3',
+                                                          'client_secret' => 'ogZbdI6qLQfuN80BiH1XEVQSzRuOHpwkYoKUqUKc',
+                                                          'scope' => 'place-orders check-status',
                                                          ],
                                        ]
                                       );
@@ -242,7 +244,7 @@ Route::get('/clientCredentialsGrantMachineTest',
              eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMxNDFlNzkyZmNkMjYyNjUwZTQ5MWNhZTE3MzUxMmZmMjg4Y2NjNTY5ZTRiYmFhMmJhZDFiZWFkNmQ1YjFjYmVkZmQwMTYwZWNhZDliNjkwIn0.eyJhdWQiOiIzIiwianRpIjoiMzE0MWU3OTJmY2QyNjI2NTBlNDkxY2FlMTczNTEyZmYyODhjY2M1NjllNGJiYWEyYmFkMWJlYWQ2ZDViMWNiZWRmZDAxNjBlY2FkOWI2OTAiLCJpYXQiOjE0OTk3ODc1NzYsIm5iZiI6MTQ5OTc4NzU3NiwiZXhwIjoxNTMxMzIzNTc2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.r637rV5SPo-f4RCxAAk4wAg88cxGHgiVZng6y35afoHMwYc6rp3d4CEgUwnAc3GM8uaNeG5RediDQ-9QigQFeUDaakPXjbbKhuyfryU3SQhw1MohH09HSg_yUKOxGTwBnlJrcY3sAFHL1MOfAmtaFGMomzHH-BV6Kfd0pe3fwb3eFfGfpcI15bcQzNDXvn3bvdZMvt8d4ByYAaqdD4G13qWAiQPcBTs9RDeE3I-SCWFJtfd6h1Ii3CrmO2n6op7O5GD7fz-mAiIwTcmlj-qgbqVCwIbVV4Ev0Bixj0OlQnOpjWMOtqAJDs_ZPB71qIlxmiI03prtwAYwKiaqxEmBEs18DdvpHjWwu7vxwZEuNuMFHXCX67KhaC1li_7Stz0UNQMSUx85tNBOL_Czc1a6M8T-iMni8VeQY11T3n1GVnwGbAWy0vKzUvvLtlV7wmNN39EJ0lAWntLXq2YPARiFjqjgmqM06klekQXIoa7-1du3WBbBB_AZOnimGahYjQBrPa-dQFs4ZRQkxZ81NUlGjkJETnfBA1eXrlvmhe6OpQq0I2H1v0AbZwdqpgcBA73NJ89Me92GoosqwGbPAsbuur53Z-pEAyTOZGfW2EAe9OxhlydX-CTN0wqnwhRN8oC2OQkW9bXT6lyzgH8KOSJx6wat0uaXSp109xKj7CyPVSk
 
              */
-             $header = ['Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImE5Yzc0YWIyMGY2ZWIxMWYxMjBiZTFjMGJhOGZjMWY5NTE2OTMxYzdhNmExNzBkYjUzZjM4ODlkYWJhMTZkNjEyNDk1YjNjZTcxOTE0MDc0In0.eyJhdWQiOiI3IiwianRpIjoiYTljNzRhYjIwZjZlYjExZjEyMGJlMWMwYmE4ZmMxZjk1MTY5MzFjN2E2YTE3MGRiNTNmMzg4OWRhYmExNmQ2MTI0OTViM2NlNzE5MTQwNzQiLCJpYXQiOjE0OTk4ODQyMTUsIm5iZiI6MTQ5OTg4NDIxNSwiZXhwIjoxNTMxNDIwMjE1LCJzdWIiOiIiLCJzY29wZXMiOltdfQ.OxxgyVT4Nzr-9NVCOQwOjnAHMhOyEE-SP5-N82I1x_MvyWeQ47zOTLlGlFcrbOIgVDd7F9byba7Oj19P9brYSluP_AwbI6C8cLb4qTpgqseb76IxVbh0gCPk3KKRR7TeJAcDQwxFThkB1go5eoHOS9denM7b3qEN2MLOLbteqUIn_ug8Gzo4g1LPtNGy6sJaic8b5gfPJuEoSVxy0eCQ-29N9Y8-Nsr4UTgiiQ0e8JO42H_c1T5gPAvsrU9xbHGdw6RuTxZwc5ez-K7hxsJTNXxthiX3bsceLX5s4M2KKC2dY2OtYXoFlJaZRwqd2_V88laoST0yiDqiyLDGxodFBYe778x7-lcg5Rzfb1Efhl1YwwP7Tun3cqxIg5sY5-ArbvRdDMLt_tJ06ssStbetfR5EVZ8pImQaXnORyBKlPsYg2_zlO2pKAKD74dDBgENiO2TdmuVrOPiwd_z3gkgbiKCcNU5hJ-ZTmW3uzRunNvdfUBw5sQIn1DfjNxer1R73tipt81sAJHsfGyLHvqbuNiFGYC9fQVrd1o2Izx-63Gen_nAwmAn3mbtZZiEmd3s-cA7IRO-5LZ5waxHSJdcrsu4XC4dxbgTgJJWlW-UALYJFZRo1jy_z3rkxRot_pPdD3F0FpOXO2Mfg_dNTLhkbgalNjotHeAGxek5qNveO3sU'];
+             $header = ['Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImMyNzQxMzI1ZmY2YmU3ZDI1MzNiMjE1MDc4ZDQ1Yjk0ZTE3NjAwZDFlM2M0NDVkMjQ1MzE0YzU1ZWM5ZTJlNDBkYjYyNTQyMjliYTFhOTJiIn0.eyJhdWQiOiIzIiwianRpIjoiYzI3NDEzMjVmZjZiZTdkMjUzM2IyMTUwNzhkNDViOTRlMTc2MDBkMWUzYzQ0NWQyNDUzMTRjNTVlYzllMmU0MGRiNjI1NDIyOWJhMWE5MmIiLCJpYXQiOjE0OTk5OTQ4MTgsIm5iZiI6MTQ5OTk5NDgxOCwiZXhwIjoxNTMxNTMwODE4LCJzdWIiOiIiLCJzY29wZXMiOlsicGxhY2Utb3JkZXJzIiwiY2hlY2stc3RhdHVzIl19.ReCgU6PGR8VGVflH5gIIoqak7XR6cgztGhs-Vh5LruzplSZcALdIpJ3TGqEFbDHDR37cVUoUyquc3r5qaLFm14WGNZrHA3ZknHsBvsvk56k7CpXnQKArRIQBYboxhvoNcVY-wV1Qi3QbGZcc_kGLIYHTsqJgKokVySmTBsdL8vSDhz6u0jPvNGmrn3rHwA-nHRchV5Fm2nUe_4VwZ1Dw9gOEtCt8MNL2bNpb2kF-jeSx_yd1Hx42-aVh8EPsHnOjDNpIOYF38wY5bDehYW--ctmigfJ7Ij4JPeW31q7N8jw5mcESdLVm7kmLzg7enTsVNcJGb8IzENhHPTv7_VfjYZjg87D30FHtLyGp-h8c7uvqqSTtwA-PgRtvZGDALQ__Sn6hDw--rLYANiPZHzgOvqbd74LVcybeJO9_lZbymZcO1f-OI_G3jpCQ4DLxC3QbvhFM1-Z7Il6dFa0Cg9QTS0i6fRIujxAOMFsfl2j4JRfJ-F74iEWpiMez7SeGpaV2dx00xvLPk-aSH40ByYR0JMCMCX5SliaGPsAh4f4PEJEeCwh6r1rbYzmCIML943Z1EB3WMcV7O-KbVfyNo5qtXjT37RA2vC_3mLOwOehhcRDBvXcfXh0b_jMeySzzHy6P8uGk6Pj0ohuQLVt4qhAxKmMI9LVH3YC8NfEnF_cDcm8'];
 
              $ch = curl_init ();
              curl_setopt ($ch, CURLOPT_URL, 'http://oauth2server1/api/user/1');
